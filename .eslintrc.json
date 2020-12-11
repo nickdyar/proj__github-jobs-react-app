@@ -1,16 +1,20 @@
 {
   "env": {
     "browser": true,
+    "commonjs": true,
     "es2020": true,
+    "jest": true,
     "node": true
   },
   "extends": [
     "airbnb",
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:jsx-a11y/recommended",
-    "prettier",
-    "prettier/react"
+    "plugin:jsx-a11y/strict",
+    // "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended",
+    "prettier/react",
+    "plugin:react/recommended"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -22,13 +26,16 @@
     "ecmaVersion": 11,
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks", "prettier"],
+  "plugins": ["react", "react-hooks", "jsx-a11y", "prettier"],
   "rules": {
-    "import/prefer-default-export": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "strict": 0,
+    "no-console": "off",
     "react/prop-types": 0,
+    "prettier/prettier": ["error"],
+    "import/prefer-default-export": "off",
+    "strict": 0,
     "no-undef": "off",
     "no-undefined": "off",
     "no-undef-init": "off",
@@ -38,31 +45,11 @@
         "props": true
       }
     ],
-    "react/jsx-filename-extension": [
-      "error",
-      {
-        "extensions": [".js", ".jsx"]
-      }
-    ],
     "no-unused-vars": [
       "warn",
       {
         "vars": "local",
         "args": "none"
-      }
-    ],
-    "prettier/prettier": [
-      "error",
-      {
-        "printWidth": 80,
-        "endOfLine": "lf",
-        "jsxBracketSameLine": true,
-        "bracketSpacing": true,
-        "semi": true,
-        "singleQuote": true,
-        "useTabs": false,
-        "tabWidth": 2,
-        "trailingComma": "es5"
       }
     ]
   }
