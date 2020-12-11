@@ -1,0 +1,69 @@
+{
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "prettier",
+    "prettier/react"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    },
+    "ecmaVersion": 11,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "react-hooks", "prettier"],
+  "rules": {
+    "import/prefer-default-export": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "strict": 0,
+    "react/prop-types": 0,
+    "no-undef": "off",
+    "no-undefined": "off",
+    "no-undef-init": "off",
+    "no-param-reassign": [
+      "warn",
+      {
+        "props": true
+      }
+    ],
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "no-unused-vars": [
+      "warn",
+      {
+        "vars": "local",
+        "args": "none"
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 80,
+        "endOfLine": "lf",
+        "jsxBracketSameLine": true,
+        "bracketSpacing": true,
+        "semi": true,
+        "singleQuote": true,
+        "useTabs": false,
+        "tabWidth": 2,
+        "trailingComma": "es5"
+      }
+    ]
+  }
+}
