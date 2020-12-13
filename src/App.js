@@ -8,18 +8,18 @@ import JobsPagination from './JobsPagination';
 function App() {
   const [params, setParams] = useState({});
   const [page, setPage] = useState(1);
-  const { jobs, loading, error } = useFetchJobs(params, page);
+  const { jobs, loading, error, hasNextPage } = useFetchJobs(params, page);
 
   return (
     <Container className='my-4'>
       <h1 className='mb-4'>Github Jobs</h1>
-      <JobsPagination page={page} setPage={setPage} />
+      <JobsPagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
       {loading && <h1>Fetching jobs...</h1>}
       {error && <h1>Oops! Try refreshing browser.</h1>}
-      {jobs.map(job => (
+      {jobs.map((job) => (
         <Job key={job.id} job={job} />
       ))}
-      <JobsPagination page={page} setPage={setPage} hasNextPage />
+      <JobsPagination page={page} setPage={setPage} hasNextPag={hasNextPage} />
     </Container>
   );
 }
