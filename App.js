@@ -14,8 +14,8 @@ function App() {
     <Container className='my-4'>
       <h1 className='mb-4'>Github Jobs</h1>
       <JobsPagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
-      {loading && <h1>fetching jobs...</h1>}
-      {error && <h1>Error -- try refreshing the browser.</h1>}
+      {loading && <h1>Fetching jobs...</h1>}
+      {error && <h1>Oops! Try refreshing browser.</h1>}
       {jobs.map((job) => (
         <Job key={job.id} job={job} />
       ))}
