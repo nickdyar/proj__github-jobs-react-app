@@ -13,11 +13,16 @@ function App() {
 
   // takes in an event provided by input
   // every time an event changes, this function is called
+  // we'll pass this function down to our SearchForm
   function handleParamChange(e) {
     const param = e.target.name;
     const { value } = e.target;
+    // set to page 1 on each new search (i.e., input field(s) are updated)
     setPage(1);
+    // (below) => create new object with current params, and...
     setParams((prevParams) => {
+      // ...return current params along with new param (value) rep desc input
+      // we'll create key inside params called 'desc' which links to form input
       // [param] reps new param value; value reps text entered in input description field
       return { ...prevParams, [param]: value };
     });

@@ -34,9 +34,10 @@ export default function Job({ job }) {
           <img
             className='d-sm-none d-md-block'
             height='50'
-            width='auto'
             src={job.company_logo}
             alt={job.company}
+            // max-width: 100%;
+            // height: auto;
           />
         </div>
 
