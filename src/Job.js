@@ -12,7 +12,9 @@ export default function Job({ job }) {
           <div>
             <Card.Title>
               {job.title} -{' '}
-              <span clasName='text-muted font-weight-light'>{job.company}</span>
+              <span className='text-muted font-weight-light'>
+                {job.company}
+              </span>
             </Card.Title>
 
             <Card.Subtitle className='text-muted mb-2'>
@@ -32,6 +34,7 @@ export default function Job({ job }) {
           <img
             className='d-sm-none d-md-block'
             height='50'
+            width='auto'
             src={job.company_logo}
             alt={job.company}
           />
