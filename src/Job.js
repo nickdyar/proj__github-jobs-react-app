@@ -1,29 +1,37 @@
 import React, { useState } from 'react';
-import { Card, Badge, Button, Collapse } from 'react-bootstrap';
+import { Collapse } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
+import Card from './components/Card/Card';
+import CardBody from './components/Card/CardBody';
+import CardTitle from './components/Card/CardTitle';
+import CardSubtitle from './components/Card/CardSubtitle';
+import CardText from './components/Card/CardText';
+import Badge from './components/Badge/Badge';
+import Button from './components/Button/Button';
 
 export default function Job({ job }) {
   const [open, setOpen] = useState(false);
 
   return (
     <Card className='mb-3'>
-      <Card.Body>
+      <CardBody>
         <div className='d-flex justify-content-between'>
           <div>
-            <Card.Title>
+            <CardTitle>
               {job.title} -{' '}
               <span className='text-muted font-weight-light'>
                 {job.company}
               </span>
-            </Card.Title>
+            </CardTitle>
 
-            <Card.Subtitle className='text-muted mb-2'>
+            <CardSubtitle className='text-muted mb-2'>
               {new Date(job.created_at).toLocaleDateString()}
-            </Card.Subtitle>
+            </CardSubtitle>
 
             <Badge variant='secondary' className='mr-2'>
               {job.type}
             </Badge>
+
             <Badge variant='secondary'>{job.location}</Badge>
 
             <div style={{ wordBreak: 'break-all' }}>
@@ -36,26 +44,24 @@ export default function Job({ job }) {
             height='50'
             src={job.company_logo}
             alt={job.company}
-            // max-width: 100%;
-            // height: auto;
           />
         </div>
 
-        <Card.Text>
+        <CardText>
           <Button
             onClick={() => setOpen((prevOpen) => !prevOpen)}
             variant='primary'
           >
             {open ? 'Hide Details' : 'View Details'}
           </Button>
-        </Card.Text>
+        </CardText>
 
         <Collapse in={open}>
           <div className='mt-4'>
             <ReactMarkdown source={job.description} />
           </div>
         </Collapse>
-      </Card.Body>
+      </CardBody>
     </Card>
   );
 }

@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { Container } from 'react-bootstrap';
+// import { Container } from 'react-bootstrap';
+import Container from './components/Container';
 import useFetchJobs from './useFetchJobs';
 import Job from './Job';
 import JobsPagination from './JobsPagination';
 import SearchForm from './SearchForm';
+import Spinner from './components/Spinner';
 
 function App() {
   const [params, setParams] = useState({});
@@ -29,12 +31,12 @@ function App() {
   }
 
   return (
-    <Container className='my-4'>
+    <Container>
       <h1 className='mb-4'>Github Jobs</h1>
       <SearchForm params={params} onParamChange={handleParamChange} />
       <JobsPagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
-      {loading && <h1>fetching jobs...</h1>}
-      {error && <h1>Error -- try refreshing the browser.</h1>}
+      {loading && <Spinner />}
+      {error && <h1>Error -- refresh browser.</h1>}
       {jobs.map((job) => (
         <Job key={job.id} job={job} />
       ))}
