@@ -1,66 +1,66 @@
 import React, { useState } from 'react';
-import { Collapse } from 'react-bootstrap';
+// import { Collapse } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
-import Card from './components/Card/Card';
-import CardBody from './components/Card/CardBody';
-import CardTitle from './components/Card/CardTitle';
-import CardSubtitle from './components/Card/CardSubtitle';
-import CardText from './components/Card/CardText';
-import Badge from './components/Badge/Badge';
-import Button from './components/Button/Button';
+import Collapse from './components/Collapse';
+import Img from './components/Img';
+import Card from './components/Card';
+import CardBody from './components/CardBody';
+import CardTitle from './components/CardTitle';
+import CardDate from './components/CardDate';
+import CardText from './components/CardText';
+import CardWrapper from './components/CardWrapper';
+import CardHeader from './components/CardHeader';
+import Badge from './components/Badge';
+import Button from './components/Button';
+import BadgeWrapper from './components/BadgeWrapper';
+import CardHeaderLeft from './components/CardHeaderLeft';
+import CardHeaderRight from './components/CardHeaderRight';
 
 export default function Job({ job }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <Card className='mb-3'>
+    <Card>
       <CardBody>
-        <div className='d-flex justify-content-between'>
-          <div>
-            <CardTitle>
-              {job.title} -{' '}
-              <span className='text-muted font-weight-light'>
-                {job.company}
-              </span>
-            </CardTitle>
+        <CardWrapper>
+          <CardHeader>
+            <CardHeaderLeft>
+              <CardTitle>{job.title}</CardTitle>
+              <CardDate>
+                {new Date(job.created_at).toLocaleDateString()}
+              </CardDate>
+              <BadgeWrapper>
+                <Badge>{job.type}</Badge>
+                <Badge>{job.location}</Badge>
+              </BadgeWrapper>
+            </CardHeaderLeft>
+            <CardHeaderRight>
+              <Img className='logo' src={job.company_logo} alt={job.company} />
+            </CardHeaderRight>
+          </CardHeader>
 
-            <CardSubtitle className='text-muted mb-2'>
-              {new Date(job.created_at).toLocaleDateString()}
-            </CardSubtitle>
+          <div style={{ wordBreak: 'break-word' }}>
+            <ReactMarkdown source={job.how_to_apply} />
+          </div>
 
-            <Badge variant='secondary' className='mr-2'>
-              {job.type}
-            </Badge>
+          <CardText>
+            <Button
+              onClick={() => setOpen((prevOpen) => !prevOpen)}
+              variant='primary'
+            >
+              {open ? 'Hide Details' : 'View Details'}
+            </Button>
+          </CardText>
 
-            <Badge variant='secondary'>{job.location}</Badge>
-
-            <div style={{ wordBreak: 'break-all' }}>
-              <ReactMarkdown source={job.how_to_apply} />
+          <Collapse in={open}>
+            {/* React Markdown Cotnainer */}
+            <div className='mt-4'>
+              {/* React Markdown Text */}
+              <ReactMarkdown source={job.description} />
+              {/* visibility: ${(props) => (props.menuOpen ? 'visible' : 'hidden')}; */}
             </div>
-          </div>
-
-          <img
-            className='d-sm-none d-md-block'
-            height='50'
-            src={job.company_logo}
-            alt={job.company}
-          />
-        </div>
-
-        <CardText>
-          <Button
-            onClick={() => setOpen((prevOpen) => !prevOpen)}
-            variant='primary'
-          >
-            {open ? 'Hide Details' : 'View Details'}
-          </Button>
-        </CardText>
-
-        <Collapse in={open}>
-          <div className='mt-4'>
-            <ReactMarkdown source={job.description} />
-          </div>
-        </Collapse>
+          </Collapse>
+        </CardWrapper>
       </CardBody>
     </Card>
   );

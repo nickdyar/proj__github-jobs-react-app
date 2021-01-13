@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const ContainerWrapper = styled.section`
   width: 100%;
@@ -12,12 +12,14 @@ const ContainerWrapper = styled.section`
   margin-bottom: 1.5rem;
 `;
 
-const Container = ({ props, children }) => (
+const Container = ({ children }) => (
   <ContainerWrapper>{children}</ContainerWrapper>
 );
 
-// Container.propTypes = {
-//   children: PropTypes.node.isRequired,
-// };
+Container.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+// Container.defaultProps = {};
 
 export default Container;

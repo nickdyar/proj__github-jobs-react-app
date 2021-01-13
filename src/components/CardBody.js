@@ -8,9 +8,6 @@ const CardBody = styled.div`
     &:hover {
       text-decoration: none;
     }
-    & + a {
-      margin-left: ${(props) => getMargin(props, 'cardBody', 'leftA')};
-    }
   }
 `;
 
